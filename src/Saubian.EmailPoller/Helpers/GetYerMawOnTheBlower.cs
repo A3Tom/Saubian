@@ -1,35 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Saubian.EmailPoller.Helpers
 {
-    internal class GetYerMawOnTheBlower
+    public static class GetYerMawOnTheBlower
     {
-        internal async Task<string> Honk(string functionName, string key)
-        {
-            try
-            {
-                HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}", key);
-                
-                dynamic response = "";
-
-                if (responseFromAnotherFunction.IsSuccessStatusCode)
-                {
-                    response = responseFromAnotherFunction.Content.ReadAsStringAsync().Result;
-                }
-
-                return response;
-            }
-            catch (Exception ex)
-            {
-                return string.Format("Something went wrong, please try agian! Reason:{0}", ex.Message);
-            }
-        }
-
-        internal async Task<dynamic> Honk(string functionName)
+        public static async Task<dynamic> Honk(string functionName)
         {
             try
             {
@@ -50,12 +27,12 @@ namespace Saubian.EmailPoller.Helpers
             }
         }
 
-        internal async Task<dynamic> Honk(string functionName, object payload)
+        public static async Task<dynamic> Honk(string baseUrl, string functionName, object payload)
         {
             try
             {
                 HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}/", payload);
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"{baseUrl}/api/{functionName}/", payload);
                 dynamic response = "";
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)
@@ -69,6 +46,34 @@ namespace Saubian.EmailPoller.Helpers
             {
                 return string.Format("Something went wrong, please try agian! Reason:{0}", ex.Message);
             }
+        }
+
+        public static async Task<T> Honk<T>(string baseUrl, string functionName, object payload)
+        {
+            try
+            {
+                HttpClient newClient = new HttpClient();
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"{baseUrl}/api/{functionName}/", payload);
+                dynamic response = "";
+
+                if (responseFromAnotherFunction.IsSuccessStatusCode)
+                {
+                    response = responseFromAnotherFunction.Content.ReadAsStringAsync().Result;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went wrong, please try agian! Reason:{0}", ex.Message);
+
+                throw ex;
+            }
+        }
+
+        public static string GetEnvironmentVariable(string name)
+        {
+            return Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
         }
     }
 }
