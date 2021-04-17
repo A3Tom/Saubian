@@ -1,0 +1,19 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "mailboxTarget" : "MAILBOXTARGETS"
+        },
+        "Saubian Dev" : {
+            "apiBaseURL" : "DEV_API_BASEURL",
+            "emailPollerBaseURL" : "DEV_EMAILPOLLER_BASEURL",
+            "silverSickleBaseURL" : "DEV_SILVERSICKLE_BASEURL",
+            "tamOShanterBaseURL" : "DEV_TAMOSHANTER_BASEURL"
+        },
+        "Saubian Prod" : {
+            "apiBaseURL" : "PROD_API_BASEURL",
+            "emailPollerBaseURL" : "PROD_EMAILPOLLER_BASEURL",
+            "silverSickleBaseURL" : "PROD_SILVERSICKLE_BASEURL",
+            "tamOShanterBaseURL" : "PROD_TAMOSHANTER_BASEURL"
+        }
+    }
+}
