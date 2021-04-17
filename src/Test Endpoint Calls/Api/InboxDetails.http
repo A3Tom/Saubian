@@ -1,0 +1,14 @@
+@baseUrl = {{$dotenv %apiBaseURL}}
+@controller = InboxDetails
+@uri = {{baseUrl}}/{{controller}}
+@targetFolder = Toppers
+
+
+###
+# @name GetAllFolders
+GET {{uri}}/GetAllFolders
+
+###
+# @name GetFolderMailSubjectLines
+GET {{uri}}/GetFolderMailSubjectLines
+    ?folder={{targetFolder}}
