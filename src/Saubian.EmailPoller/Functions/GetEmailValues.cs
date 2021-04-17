@@ -14,20 +14,21 @@ namespace Saubian.EmailPoller.Functions
     public class GetEmailValues
     {
         private const string KEYVAULT_FUNCTION_NAME = "GetKeyVaultValue";
+        private const string EMAIL_POLLER_APP_SETTING_KEY = "EmailPollerUrl";
 
         [FunctionName(nameof(GetEmailValues))]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req
             )
         {
-            var ringRing = new GetYerMawOnTheBlower();
+            var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
 
             var taskList = new List<Task<string>>()
             {
-                ringRing.Honk(KEYVAULT_FUNCTION_NAME, "EmailUser"),
-                ringRing.Honk(KEYVAULT_FUNCTION_NAME, "EmailPassword"),
-                ringRing.Honk(KEYVAULT_FUNCTION_NAME, "EmailServer"),
-                ringRing.Honk(KEYVAULT_FUNCTION_NAME, "EmailPort")
+                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailUser"),
+                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailPassword"),
+                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailServer"),
+                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailPort")
             };
 
             var result = await Task.WhenAll(taskList);

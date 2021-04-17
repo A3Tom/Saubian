@@ -21,6 +21,8 @@ namespace Saubian.EmailPoller.Functions
         private const string EMAIL_KEY_FUNCTION_NAME = nameof(GetEmailValues);
         private const string SB_MESSAGE_FUNCTION_NAME = nameof(SendMessageToServiceBus);
 
+        private const string EMAIL_POLLER_APP_SETTING_KEY = "EmailPollerUrl";
+
         private static readonly TamsWeeProtoLogger _protoLog = new TamsWeeProtoLogger();
 
         private MailOptions _mailSettings = new MailOptions();
@@ -35,7 +37,7 @@ namespace Saubian.EmailPoller.Functions
             await SetEmailKeys();
 
             var result = await ReadMessages(request.Mailbox, request.From, request.To);
-            await SendServiceBusMessage(result);
+            await SendServiceBusMessages(result);
 
             return new OkObjectResult(result);
         }
@@ -51,18 +53,23 @@ namespace Saubian.EmailPoller.Functions
             return new OkObjectResult(mailFolders);
         }
 
-        private async Task SendServiceBusMessage(IEnumerable<MessageDetail> messages)
+        private async Task SendServiceBusMessages(IEnumerable<MessageDetail> messages)
         {
-            var ringRing = new GetYerMawOnTheBlower();
+            var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
 
-            await ringRing.Honk(SB_MESSAGE_FUNCTION_NAME, messages);
+            var honkTheLot = new List<Task>();
+
+            foreach (var message in messages)
+            {
+                honkTheLot.Add(GetYerMawOnTheBlower.Honk(emailPollerUri, SB_MESSAGE_FUNCTION_NAME, message));
+            }
+
+            await Task.WhenAll(honkTheLot);
         }
 
         private async Task SetEmailKeys()
         {
-            var ringRing = new GetYerMawOnTheBlower();
-
-            var keyQueryResponse = await ringRing.Honk(EMAIL_KEY_FUNCTION_NAME);
+            var keyQueryResponse = await GetYerMawOnTheBlower.Honk(EMAIL_KEY_FUNCTION_NAME);
 
             var emailKeys = JsonConvert.DeserializeObject<EmailKeyQueryResponse>(keyQueryResponse);
 

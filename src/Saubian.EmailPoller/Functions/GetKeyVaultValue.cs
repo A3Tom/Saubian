@@ -7,12 +7,13 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
+using Saubian.EmailPoller.Helpers;
 
 namespace Saubian.EmailPoller.Functions
 {
     public class GetKeyVaultValue
     {
-        const string KEYVAULT_BASE_URI = "https://realmseal-dev.vault.azure.net/";
+        const string KEYVAUL_URL_SETTINGS_KEY = "KeyvaulUrl";
 
         [FunctionName(nameof(GetKeyVaultValue))]
         public async Task<string> Run(
@@ -33,7 +34,9 @@ namespace Saubian.EmailPoller.Functions
                     new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback)
                     );
 
-                var secret = await keyVaultClient.GetSecretAsync(KEYVAULT_BASE_URI + $"secrets/{key}");
+                var keyvaultUri = GetYerMawOnTheBlower.GetEnvironmentVariable(KEYVAUL_URL_SETTINGS_KEY);
+
+                var secret = await keyVaultClient.GetSecretAsync($"{keyvaultUri}/secrets/{key}");
 
                 message = secret.Value;
 
