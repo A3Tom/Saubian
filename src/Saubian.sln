@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.Api", "Saubian.Api\Saubian.Api.csproj", "{E2386034-2933-42EA-8C05-E9F02AD37A98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.Domain", "Saubian.Domain\Saubian.Domain.csproj", "{943E20AA-F528-4AB8-B242-1827FB742B23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.Service", "Saubian.Service\Saubian.Service.csproj", "{9C5D1288-E555-4E33-8ACB-0AF7D484DF88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.EmailPoller", "Saubian.EmailPoller\Saubian.EmailPoller.csproj", "{EC937B1C-90A1-410F-ACBF-99B62ECCC705}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2386034-2933-42EA-8C05-E9F02AD37A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2386034-2933-42EA-8C05-E9F02AD37A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2386034-2933-42EA-8C05-E9F02AD37A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2386034-2933-42EA-8C05-E9F02AD37A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943E20AA-F528-4AB8-B242-1827FB742B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943E20AA-F528-4AB8-B242-1827FB742B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943E20AA-F528-4AB8-B242-1827FB742B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943E20AA-F528-4AB8-B242-1827FB742B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5D1288-E555-4E33-8ACB-0AF7D484DF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5D1288-E555-4E33-8ACB-0AF7D484DF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5D1288-E555-4E33-8ACB-0AF7D484DF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5D1288-E555-4E33-8ACB-0AF7D484DF88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15BBC86B-6664-4C9B-94D3-C15B6FD2AB15}
+	EndGlobalSection
+EndGlobal
