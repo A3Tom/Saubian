@@ -15,6 +15,9 @@
 		"SecretKey_EmailServer": "EmailServer",
 		"SecretKey_EmailPort": "EmailPort",
 
+		"EmailPollerUrl": "EmailPollerUrl",
+		"KeyvaulUrl": "KeyvaulUrl",
+
 		"AzureWebJobsStorage": "DefaultEndpointsProtocol="
 	},
 	"ConnectionStrings": {
