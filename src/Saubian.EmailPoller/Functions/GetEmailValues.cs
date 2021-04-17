@@ -31,6 +31,8 @@ namespace Saubian.EmailPoller.Functions
 
             var result = await Task.WhenAll(taskList);
 
+            // TODO : I hate this method of extracting data from an array. 
+            // I need to improve that shit because am I fuck keepin this here
             var response = new EmailKeyQueryResponse()
             {
                 Account = new Account()
