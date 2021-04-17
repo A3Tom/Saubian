@@ -8,7 +8,7 @@ namespace Saubian.Service.Classes
 {
     public static class MessageBusHandler
     {
-        public static async Task PeepThemGlyphs(MessageSender messagesQueue, Stream messageStream)
+        public static async Task AmChantin(MessageSender messagesQueue, Stream messageStream)
         {
             string requestBody = await new StreamReader(messageStream).ReadToEndAsync();
 
