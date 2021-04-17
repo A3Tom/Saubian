@@ -21,8 +21,8 @@ local.settings.json
 x64/
 x86/
 bld/
-*/[Bb]in/
-*/[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
 [Ll]og/
 Saubian.EmailPoller/Properties
 **.Development.json
