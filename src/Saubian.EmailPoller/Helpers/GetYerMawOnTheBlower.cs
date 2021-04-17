@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Saubian.EmailPoller.Helpers
 {
@@ -11,7 +11,6 @@ namespace Saubian.EmailPoller.Helpers
         {
             try
             {
-                //var payload = new Tuple<string, string>("key", key);
                 HttpClient newClient = new HttpClient();
                 HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}", key);
                 
@@ -36,6 +35,27 @@ namespace Saubian.EmailPoller.Helpers
             {
                 HttpClient newClient = new HttpClient();
                 HttpResponseMessage responseFromAnotherFunction = await newClient.GetAsync($"http://localhost:7071/api/{functionName}/");
+                dynamic response = "";
+
+                if (responseFromAnotherFunction.IsSuccessStatusCode)
+                {
+                    response = responseFromAnotherFunction.Content.ReadAsStringAsync().Result;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return string.Format("Something went wrong, please try agian! Reason:{0}", ex.Message);
+            }
+        }
+
+        internal async Task<dynamic> Honk(string functionName, object payload)
+        {
+            try
+            {
+                HttpClient newClient = new HttpClient();
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}/", payload);
                 dynamic response = "";
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)
