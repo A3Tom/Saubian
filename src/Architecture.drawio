@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="es6xqziEnJ2Jqfx3n4ws" name="Page-1">
-        <mxGraphModel dx="758" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="600" pageHeight="900" background="#BDBDBD" math="0" shadow="0">
+        <mxGraphModel dx="758" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="600" pageHeight="900" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -52,7 +52,7 @@
                 <mxCell id="18" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Resource_Groups.svg;" parent="1" vertex="1">
                     <mxGeometry x="10" y="10" width="68" height="64" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="RG-Saubian" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;fontSize=45;" parent="1" vertex="1">
+                <mxCell id="19" value="RG-Saubian" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fontSize=45;" parent="1" vertex="1">
                     <mxGeometry x="92" y="10" width="260" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.clock;fontSize=45;" parent="1" vertex="1">
