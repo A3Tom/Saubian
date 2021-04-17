@@ -66,3 +66,6 @@ return await creditList
 |Article|John Staughton|How pigeon post worked|Homing Pigeons|[Cheers Mate](https://www.scienceabc.com/eyeopeners/how-did-the-pigeon-post-work.html)|
 |Article|Daniel Krzyczkowski|Integrate Key Vault Secrets With Azure Functions|Azure Functions, AzureKeyVault|[Cheers Mate](https://daniel-krzyczkowski.github.io/Integrate-Key-Vault-Secrets-With-Azure-Functions/)|
 
+# Architecture #
+
+<img src="src\Architecture.svg">
