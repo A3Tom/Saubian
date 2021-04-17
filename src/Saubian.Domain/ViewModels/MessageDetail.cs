@@ -17,9 +17,13 @@ namespace Saubian.Domain.ViewModels
         public string Sender { get; set; }
         public string Body { get; set; }
         public DateTimeOffset SentAt { get; private set; }
+        public bool Cleansed { get; set; }
+        public bool SanityChecked { get; set; }
 
         public string CleanseStringOfFormatting(string targetString)
         {
+            Cleansed = true;
+
             return !string.IsNullOrEmpty(targetString) ? 
                 targetString.Replace(Environment.NewLine, string.Empty) :
                 null;
