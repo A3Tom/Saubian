@@ -7,7 +7,7 @@ The goal of this project is to scan my inbox for some sexy wee Russian smashin m
 
 ---
 ## Background : ##
-This idea has been kockin about for a while but it collided with me investagting Azure functions and aw the mad hings that Azure has in it's bowels. So I was wanting to combine all these elements into one program as a primer / example / the noobgains from failing and learning before going onto larger projects
+This idea has been knockin about for a while but it collided with me investagting Azure functions and aw the mad hings that Azure has in it's bowels. So I was wanting to combine all these elements into one program as a primer / example / the noobgains from failing and learning before going onto larger projects
 
 That was one element but another was I just wanty make Alexa say shit, I've got other projects kickin about ma heed for other hings too about Alexa but I hadn't messed about with the Alexa dev shit before and I remember absolutely pummelling those mad TTS shitty voice hings to make them scream obscenities in their mad robotic overlord voice. Fuckin incredible times.
 
