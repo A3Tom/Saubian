@@ -1,5 +1,5 @@
 {
-    "IsEncrypted": false,
+	"IsEncrypted": false,
 	"Values": {
 		"FUNCTIONS_WORKER_RUNTIME": "dotnet",
 		"FUNCTIONS_EXTENSION_VERSION": "~1",
@@ -16,5 +16,8 @@
 		"SecretKey_EmailPort": "EmailPort",
 
 		"AzureWebJobsStorage": "DefaultEndpointsProtocol="
+	},
+	"ConnectionStrings": {
+		"ServiceBusConnection": "Endpoint="
 	}
 }
