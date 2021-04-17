@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -10,8 +11,10 @@ namespace Saubian.EmailPoller.Helpers
         {
             try
             {
+                //var payload = new Tuple<string, string>("key", key);
                 HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.GetAsync($"http://localhost:7071/api/{functionName}/{key}");
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}", key);
+                
                 dynamic response = "";
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)

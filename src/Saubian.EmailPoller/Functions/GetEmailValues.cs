@@ -7,16 +7,17 @@ using Saubian.EmailPoller.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using System.Linq;
 
 namespace Saubian.EmailPoller.Functions
 {
     public class GetEmailValues
     {
-        private const string KEYVAULT_FUNCTION_NAME = "GetKeyvaultValue";
+        private const string KEYVAULT_FUNCTION_NAME = "GetKeyVaultValue";
 
         [FunctionName(nameof(GetEmailValues))]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequestMessage req
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req
             )
         {
             var ringRing = new GetYerMawOnTheBlower();
@@ -30,6 +31,9 @@ namespace Saubian.EmailPoller.Functions
             };
 
             var result = await Task.WhenAll(taskList);
+
+            if (result.Any(x => string.IsNullOrEmpty(x)))
+                return new NotFoundResult();
 
             // TODO : I hate this method of extracting data from an array. 
             // I need to improve that shit because am I fuck keepin this here

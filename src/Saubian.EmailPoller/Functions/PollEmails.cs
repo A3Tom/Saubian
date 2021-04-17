@@ -28,7 +28,7 @@ namespace Saubian.EmailPoller.Functions
 
         [FunctionName("PollEmails")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "PollEmails")] HttpRequestMessage req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req)
         {
             var request = JsonConvert.DeserializeObject<PollEmailRequest>(await req.Content.ReadAsStringAsync());
 
@@ -41,7 +41,7 @@ namespace Saubian.EmailPoller.Functions
 
         [FunctionName("GetAllMailFolders")]
         public async Task<IActionResult> GetAllMailFolders(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequestMessage req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req)
         {
             await SetEmailKeys();
 
