@@ -265,3 +265,4 @@ paket-files/
 __pycache__/
 *.pyc
 /src/Saubian.EmailPoller/Properties
+src/Test Endpoint Calls/.env
