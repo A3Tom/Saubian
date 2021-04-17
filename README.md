@@ -47,6 +47,12 @@ Retrieve prior messages on command
 
 IT IS AN INSANE SHOUT. NN Based message cleansing scheme. This would be a fuckin slam dunk as far as Super Bonus Points goes. Fuckin hyyyype if a get onto doing this
 
+
+## Architecture ##
+---
+
+<img src="src\Architecture.svg">
+
 ---
 ## Credits : ##
 As much as I would absolutely love to say "here mate am the best in the world at this shit", realistically this will - as per every project ever - be the product of a whole load of resource gathering n playdough-ing it into an angular project. As is the way.
@@ -65,8 +71,5 @@ return await creditList
 |Documentation|Microsoft|Durable Function Chaining|Durable Functions|[Cheers Mate](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sequence?tabs=csharp)|
 |Article|John Staughton|How pigeon post worked|Homing Pigeons|[Cheers Mate](https://www.scienceabc.com/eyeopeners/how-did-the-pigeon-post-work.html)|
 |Article|Daniel Krzyczkowski|Integrate Key Vault Secrets With Azure Functions|Azure Functions, AzureKeyVault|[Cheers Mate](https://daniel-krzyczkowski.github.io/Integrate-Key-Vault-Secrets-With-Azure-Functions/)|
+|Article|Steve Gordon|Sending Json using HttpClient|Http Client, Json Serialization|[Cheers Mate](https://www.stevejgordon.co.uk/sending-and-receiving-json-using-httpclient-with-system-net-http-json/)|
 
-## Architecture ##
----
-
-<img src="src\Architecture.svg">
