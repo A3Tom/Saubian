@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Saubian.EmailPoller.Helpers
 {
-    internal class GetYerMawOnTheBlower
+    public static class GetYerMawOnTheBlower
     {
-        internal async Task<string> Honk(string functionName, string key)
+        public static async Task<dynamic> Honk(string baseUrl, string functionName)
         {
             try
             {
-                //var payload = new Tuple<string, string>("key", key);
                 HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"http://localhost:7071/api/{functionName}", key);
-                
+                HttpResponseMessage responseFromAnotherFunction = await newClient.GetAsync($"{baseUrl}/api/{functionName}/");
                 dynamic response = "";
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)
@@ -30,12 +27,12 @@ namespace Saubian.EmailPoller.Helpers
             }
         }
 
-        internal async Task<dynamic> Honk(string functionName)
+        public static async Task<T> Honk<T>(string baseUrl, string functionName, object payload)
         {
             try
             {
                 HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.GetAsync($"http://localhost:7071/api/{functionName}/");
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"{baseUrl}/api/{functionName}/", payload);
                 dynamic response = "";
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)
@@ -47,8 +44,15 @@ namespace Saubian.EmailPoller.Helpers
             }
             catch (Exception ex)
             {
-                return string.Format("Something went wrong, please try agian! Reason:{0}", ex.Message);
+                Console.WriteLine("Something went wrong, please try agian! Reason:{0}", ex.Message);
+
+                throw ex;
             }
+        }
+
+        public static string GetEnvironmentVariable(string name)
+        {
+            return Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
         }
     }
 }

@@ -1,12 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Saubian.Domain.Classes;
-using Saubian.Domain.Models;
-using Saubian.Domain.ViewModels;
-using Saubian.EmailPoller.Helpers;
-using Saubian.EmailPoller.Models;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Security;
@@ -14,12 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
+using Saubian.Domain.Classes;
+using Saubian.Domain.Models;
+using Saubian.Domain.ViewModels;
+using Saubian.EmailPoller.Helpers;
+using Saubian.EmailPoller.Models;
 
 namespace Saubian.EmailPoller.Functions
 {
     public class PollEmails
     {
         private const string EMAIL_KEY_FUNCTION_NAME = nameof(GetEmailValues);
+        private const string SB_MESSAGE_FUNCTION_NAME = nameof(SendMessageToServiceBus);
+
+        private const string EMAIL_POLLER_APP_SETTING_KEY = "EmailPollerUrl";
 
         private static readonly TamsWeeProtoLogger _protoLog = new TamsWeeProtoLogger();
 
@@ -36,6 +38,8 @@ namespace Saubian.EmailPoller.Functions
 
             var result = await ReadMessages(request.Mailbox, request.From, request.To);
 
+            await SendServiceBusMessages(result);
+
             return new OkObjectResult(result);
         }
 
@@ -50,11 +54,25 @@ namespace Saubian.EmailPoller.Functions
             return new OkObjectResult(mailFolders);
         }
 
+        private async Task SendServiceBusMessages(IEnumerable<MessageDetail> messages)
+        {
+            var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
+
+            var honkTheLot = new List<Task>();
+
+            foreach (var message in messages)
+            {
+                honkTheLot.Add(GetYerMawOnTheBlower.Honk<string>(emailPollerUri, SB_MESSAGE_FUNCTION_NAME, message));
+            }
+
+            await Task.WhenAll(honkTheLot);
+        }
+
         private async Task SetEmailKeys()
         {
-            var ringRing = new GetYerMawOnTheBlower();
+            var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
 
-            var keyQueryResponse = await ringRing.Honk(EMAIL_KEY_FUNCTION_NAME);
+            var keyQueryResponse = await GetYerMawOnTheBlower.Honk(emailPollerUri, EMAIL_KEY_FUNCTION_NAME);
 
             var emailKeys = JsonConvert.DeserializeObject<EmailKeyQueryResponse>(keyQueryResponse);
 

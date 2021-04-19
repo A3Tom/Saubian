@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.Service", "Saubian.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.EmailPoller", "Saubian.EmailPoller\Saubian.EmailPoller.csproj", "{EC937B1C-90A1-410F-ACBF-99B62ECCC705}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.SilverSickle", "Saubian.SilverSickle\Saubian.SilverSickle.csproj", "{C67D07AE-782A-4894-8A49-BBCF242DFF60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saubian.TamOShanter", "Saubian.TamOShanter\Saubian.TamOShanter.csproj", "{57136BCE-6358-4A48-810F-B6AF78790CD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC937B1C-90A1-410F-ACBF-99B62ECCC705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C67D07AE-782A-4894-8A49-BBCF242DFF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67D07AE-782A-4894-8A49-BBCF242DFF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67D07AE-782A-4894-8A49-BBCF242DFF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67D07AE-782A-4894-8A49-BBCF242DFF60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
