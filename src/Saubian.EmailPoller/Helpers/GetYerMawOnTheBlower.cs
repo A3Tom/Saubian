@@ -27,13 +27,15 @@ namespace Saubian.EmailPoller.Helpers
             }
         }
 
-        public static async Task<dynamic> Honk(string baseUrl, string functionName, object payload)
+        public static async Task<string> Honk(string baseUrl, string functionName, object payload)
         {
             try
             {
+                var response = "";
+                var url = $"{baseUrl}/api/{functionName}/";
+
                 HttpClient newClient = new HttpClient();
-                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync($"{baseUrl}/api/{functionName}/", payload);
-                dynamic response = "";
+                HttpResponseMessage responseFromAnotherFunction = await newClient.PostAsJsonAsync(url, payload);
 
                 if (responseFromAnotherFunction.IsSuccessStatusCode)
                 {
