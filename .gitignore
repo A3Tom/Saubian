@@ -266,3 +266,5 @@ __pycache__/
 *.pyc
 /src/Saubian.EmailPoller/Properties
 src/Test Endpoint Calls/.env
+/src/Saubian.SilverSickle/Properties
+/src/Saubian.TamOShanter/Properties
