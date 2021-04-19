@@ -1,4 +1,5 @@
 # .NET Core Function App to Windows on Azure
+
 # Build a .NET Core function app and deploy it to Azure as a Windows function App.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
@@ -68,9 +69,13 @@ stages:
 
           steps:
           - task: AzureFunctionApp@1
-            displayName: 'Azure functions app deploy'
+            displayName: 'Email Poller Deployment to Function'
             inputs:
-              azureSubscription: '$(azureSubscription)'
-              appType: functionApp
-              appName: $(functionAppName)
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              azureSubscription: 'Azure subscription 1 (d8c59745-2eaf-4859-b892-d21d7746b654)'
+              appType: 'functionApp'
+              appName: 'EmailPoller'
+              deployToSlotOrASE: true
+              resourceGroupName: 'RG-Suabian'
+              slotName: 'production'
+              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              deploymentMethod: 'runFromPackage'  
