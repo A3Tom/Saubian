@@ -37,6 +37,7 @@ namespace Saubian.EmailPoller.Functions
             await SetEmailKeys();
 
             var result = await ReadMessages(request.Mailbox, request.From, request.To);
+
             await SendServiceBusMessages(result);
 
             return new OkObjectResult(result);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.KeyVault;
@@ -16,16 +15,13 @@ namespace Saubian.EmailPoller.Functions
         const string KEYVAUL_URL_SETTINGS_KEY = "KeyvaulUrl";
 
         [FunctionName(nameof(GetKeyVaultValue))]
-        public async Task<string> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestMessage req)
+        public async Task<string> Run([HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = null)] HttpRequestMessage req)
         {
             var key = JsonConvert.DeserializeObject<string>(await req.Content.ReadAsStringAsync());
 
             if (string.IsNullOrEmpty(key))
                 return "No key has been supplied.";
 
-            string message = "";
-            // This is available as "DNS Name" from the overview page of the Key Vault.
             try
             {
                 //Connect to the KeyVault by using the token and get the secret
@@ -35,22 +31,16 @@ namespace Saubian.EmailPoller.Functions
                     );
 
                 var keyvaultUri = GetYerMawOnTheBlower.GetEnvironmentVariable(KEYVAUL_URL_SETTINGS_KEY);
+                var secretUrl = $"{keyvaultUri}/secrets/{key}";
 
-                var secret = await keyVaultClient.GetSecretAsync($"{keyvaultUri}/secrets/{key}");
+                var secret = await keyVaultClient.GetSecretAsync(secretUrl);
 
-                message = secret.Value;
-
-                Console.WriteLine(message);
-
-                return message;
+                return secret.Value;
             }
             catch (KeyNotFoundException keyVaultException)
             {
-                message = keyVaultException.Message;
-
-                return message;
+                return keyVaultException.Message;
             }
-
         }
     }
 }

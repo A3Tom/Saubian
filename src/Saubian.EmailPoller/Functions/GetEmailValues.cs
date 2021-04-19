@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Saubian.Domain.Models;
-using Saubian.EmailPoller.Helpers;
-using Saubian.EmailPoller.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using System.Linq;
+using Saubian.Domain.Models;
+using Saubian.EmailPoller.Helpers;
+using Saubian.EmailPoller.Models;
 
 namespace Saubian.EmailPoller.Functions
 {
@@ -16,6 +16,11 @@ namespace Saubian.EmailPoller.Functions
         private const string KEYVAULT_FUNCTION_NAME = "GetKeyVaultValue";
         private const string EMAIL_POLLER_APP_SETTING_KEY = "EmailPollerUrl";
 
+        private const string EMAIL_USER_KEY = "EmailUser";
+        private const string EMAIL_PASSWORD_KEY = "EmailPassword";
+        private const string EMAIL_SERVER_KEY = "EmailServer";
+        private const string EMAIL_PORT_KEY = "EmailPort";
+
         [FunctionName(nameof(GetEmailValues))]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req
@@ -23,36 +28,46 @@ namespace Saubian.EmailPoller.Functions
         {
             var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
 
-            var taskList = new List<Task<string>>()
+            var taskList = new List<Task<KeyValuePair<string, string>>>()
             {
-                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailUser"),
-                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailPassword"),
-                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailServer"),
-                GetYerMawOnTheBlower.Honk<string>(emailPollerUri, KEYVAULT_FUNCTION_NAME, "EmailPort")
+                GetKeyVaultValueToTuple(emailPollerUri, EMAIL_USER_KEY),
+                GetKeyVaultValueToTuple(emailPollerUri, EMAIL_PASSWORD_KEY),
+                GetKeyVaultValueToTuple(emailPollerUri, EMAIL_SERVER_KEY),
+                GetKeyVaultValueToTuple(emailPollerUri, EMAIL_PORT_KEY),
             };
 
             var result = await Task.WhenAll(taskList);
 
-            if (result.Any(x => string.IsNullOrEmpty(x)))
+            if (result.Any(x => string.IsNullOrEmpty(x.Value)))
                 return new NotFoundResult();
 
-            // TODO : I hate this method of extracting data from an array. 
-            // I need to improve that shit because am I fuck keepin this here
-            var response = new EmailKeyQueryResponse()
+            var response = BuildQueryResponse(result);
+
+            return new OkObjectResult(response);
+        }
+
+        private async Task<KeyValuePair<string, string>> GetKeyVaultValueToTuple(string keyvaultUrl, string key)
+        {
+            var function = await GetYerMawOnTheBlower.Honk<string>(keyvaultUrl, KEYVAULT_FUNCTION_NAME, key);
+
+            return new KeyValuePair<string, string>(key, function); 
+        }
+
+        private EmailKeyQueryResponse BuildQueryResponse(KeyValuePair<string, string>[] keys)
+        {
+            return new EmailKeyQueryResponse()
             {
                 Account = new Account()
                 {
-                    Email = result[0],
-                    Password = result[1]
+                    Email = keys.Single(x => x.Key == EMAIL_USER_KEY).Value,
+                    Password = keys.Single(x => x.Key == EMAIL_PASSWORD_KEY).Value
                 },
                 ImapComfig = new ImapConfiguration()
                 {
-                    Server = result[2],
-                    Port = int.Parse(result[3])
+                    Server = keys.Single(x => x.Key == EMAIL_SERVER_KEY).Value,
+                    Port = int.Parse(keys.Single(x => x.Key == EMAIL_PORT_KEY).Value)
                 }
             };
-
-            return new OkObjectResult(response);
         }
     }
 }
