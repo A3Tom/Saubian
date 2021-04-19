@@ -12,7 +12,7 @@ namespace Saubian.EmailPoller.Functions
 {
     public class GetKeyVaultValue
     {
-        const string KEYVAUL_URL_SETTINGS_KEY = "KeyvaulUrl";
+        const string KEYVAUL_URL_SETTINGS_KEY = "KeyVaultUrl";
 
         [FunctionName(nameof(GetKeyVaultValue))]
         public async Task<string> Run([HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = null)] HttpRequestMessage req)

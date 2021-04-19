@@ -62,7 +62,7 @@ namespace Saubian.EmailPoller.Functions
 
             foreach (var message in messages)
             {
-                honkTheLot.Add(GetYerMawOnTheBlower.Honk(emailPollerUri, SB_MESSAGE_FUNCTION_NAME, message));
+                honkTheLot.Add(GetYerMawOnTheBlower.Honk<string>(emailPollerUri, SB_MESSAGE_FUNCTION_NAME, message));
             }
 
             await Task.WhenAll(honkTheLot);
@@ -70,7 +70,9 @@ namespace Saubian.EmailPoller.Functions
 
         private async Task SetEmailKeys()
         {
-            var keyQueryResponse = await GetYerMawOnTheBlower.Honk(EMAIL_KEY_FUNCTION_NAME);
+            var emailPollerUri = GetYerMawOnTheBlower.GetEnvironmentVariable(EMAIL_POLLER_APP_SETTING_KEY);
+
+            var keyQueryResponse = await GetYerMawOnTheBlower.Honk(emailPollerUri, EMAIL_KEY_FUNCTION_NAME);
 
             var emailKeys = JsonConvert.DeserializeObject<EmailKeyQueryResponse>(keyQueryResponse);
 

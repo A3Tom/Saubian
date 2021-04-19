@@ -2,25 +2,15 @@
 	"IsEncrypted": false,
 	"Values": {
 		"FUNCTIONS_WORKER_RUNTIME": "dotnet",
-		"FUNCTIONS_EXTENSION_VERSION": "~1",
+		"FUNCTIONS_EXTENSION_VERSION": "[1.*, 2.0.0)",
 		"ScmType": "None",
-		"WEBSITE_AUTH_ENABLED": "",
-		"APPLICATIONINSIGHTS_CONNECTION_STRING": "",
-		"APPINSIGHTS_INSTRUMENTATIONKEY": "",
-		"WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=",
-		"WEBSITE_CONTENTSHARE": "",
-		"WEBSITE_SITE_NAME": "",
-		"SecretKey_EmailAddress": "EmailAddress",
-		"SecretKey_EmailPassword": "EmailPassword",
-		"SecretKey_EmailServer": "EmailServer",
-		"SecretKey_EmailPort": "EmailPort",
 
 		"EmailPollerUrl": "EmailPollerUrl",
-		"KeyvaulUrl": "KeyvaulUrl",
-
+		"KeyVaultUrl": "KeyVaultUrl",
 		"AzureWebJobsStorage": "DefaultEndpointsProtocol="
 	},
 	"ConnectionStrings": {
-		"ServiceBusConnection": "Endpoint="
+		"ServiceBusConnection": "Endpoint=",
+		"StorageAccountConnection": "DefaultEndpointsProtocol="
 	}
 }
