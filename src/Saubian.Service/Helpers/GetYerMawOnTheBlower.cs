@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Saubian.EmailPoller.Helpers
+namespace Saubian.Service.Helpers
 {
     public static class GetYerMawOnTheBlower
     {

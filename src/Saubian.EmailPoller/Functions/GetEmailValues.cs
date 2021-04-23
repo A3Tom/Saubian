@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Saubian.Domain.Models;
-using Saubian.EmailPoller.Helpers;
 using Saubian.EmailPoller.Models;
+using Saubian.Service.Helpers;
 
 namespace Saubian.EmailPoller.Functions
 {

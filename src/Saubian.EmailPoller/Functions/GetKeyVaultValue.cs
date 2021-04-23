@@ -6,7 +6,7 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
-using Saubian.EmailPoller.Helpers;
+using Saubian.Service.Helpers;
 
 namespace Saubian.EmailPoller.Functions
 {
