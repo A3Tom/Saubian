@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.Api", "Saubian.Api\Saubian.Api.csproj", "{E2386034-2933-42EA-8C05-E9F02AD37A98}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.EmailPoller", "Saub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.SilverSickle", "Saubian.SilverSickle\Saubian.SilverSickle.csproj", "{C67D07AE-782A-4894-8A49-BBCF242DFF60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saubian.TamOShanter", "Saubian.TamOShanter\Saubian.TamOShanter.csproj", "{57136BCE-6358-4A48-810F-B6AF78790CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saubian.TamOShanter", "Saubian.TamOShanter\Saubian.TamOShanter.csproj", "{57136BCE-6358-4A48-810F-B6AF78790CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saubian.Application", "Saubian.Application\Saubian.Application.csproj", "{1C93E6AD-F785-47A2-8A06-CA25CDAAFD9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57136BCE-6358-4A48-810F-B6AF78790CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C93E6AD-F785-47A2-8A06-CA25CDAAFD9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C93E6AD-F785-47A2-8A06-CA25CDAAFD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C93E6AD-F785-47A2-8A06-CA25CDAAFD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C93E6AD-F785-47A2-8A06-CA25CDAAFD9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
